@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>json server</h2>
+    <div id="container"></div>
+</body>
+</html>
+<script>
+    function Fetchdata()
+    {
+        fetch("http://localhost:3000/product")
+        .then((res)=>res.json())
+        .then((data)=>
+        {
+            // console.log(data)
+            Cardlist(data)
+        })
+        
+    }
+    Fetchdata()
+
+    // cardlist
+
+    function Cardlist(data)
+    {
+        // console.log(data);
+        let totalcard=data.map((el)=>Card(el.id,el.name,el.price,el.image,el.description))
+        document.getElementById("container").innerHTML=totalcard.join("")
+    }
+
+    //  card
+
+    function Card(id,name,price,image,description)
+    {
+        let div=`
+
+        <div id="app" style="border: 1px solid black ; padding: 5px;">
+        <div>
+            <img src=""${image} alt="">
+        
+        </div>
+        <p>id: ${id}</p>
+        <p>name: ${name}</p>
+        <p>price: ${price}</p>
+        <p>description: ${description}</p>
+    </div>
+
+        `
+        return div
+    }
+</script>

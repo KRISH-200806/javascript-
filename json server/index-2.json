@@ -1,0 +1,22 @@
+{
+    "products" :
+    [
+        {
+            "id":1 ,
+            "title":"Beyond Snack Kerala Banana Chips",
+            "Founder":"Manas Madhu",
+            "Category":"Food",
+            "Price":"$2.50"  
+        },
+        {
+            "id":2,
+            "title":"Beyond Snack Kerala Banana Chips",
+            "Founder":"Manas Madhu",
+            "Category":"Food",
+            "Price":"$3.75" 
+        },
+        {
+            
+        }
+    ]
+}

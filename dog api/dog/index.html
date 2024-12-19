@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+
+    <h1 class="title" style="text-align: center; padding-top: 20px; ">Dog API</h1>
+    <h1 id="container">
+
+    </h1>
+
+    
+</body>
+<script>
+    function Fetchdata()
+    {
+        fetch("https://freetestapi.com/api/v1/dogs")
+        .then((res)=>res.json())
+        .then(data=>cardlist(data))
+        .catch(err => console.log(err));
+    }
+    Fetchdata()
+
+
+    function cardlist(data)
+    {
+        let totalcardlist=data.map((el)=>card(el.id,el.size,el.breed_group,el.name,el.lifespan,el.origin,el.temperament,el.colors))
+        
+
+        document.getElementById("container").innerHTML=totalcardlist.join("")
+    }
+
+
+
+    function card(id,size,breed_group,name,lifespan,origin,temperament,colors)
+    {
+            let card=`
+            <div class="card" style="width:100%; height:100vh; border 
+            : 1px solid black; background-image: url('https://images.alphacoders.com/837/837348.jpg'); color:black; background-repeat: no-repeat; background-position: center; background-size: cover; margin-top:20px;">
+       
+
+
+            <p id="id"> id : ${id}</p>
+<p id="size">size :   ${size}</p>
+<p id="breed_group">breed_group:  ${breed_group}</p>
+<p id="name">lifespan:  ${lifespan}</p>
+<p id="lifespan">origin:  ${origin}</p>
+<p id="origin">temperament:   ${temperament}</p>
+<p id="temperament">colors:  ${colors}</p>
+<p  id="colors">name:  ${name}</p>
+    </div>
+            
+            `
+            return card
+    }
+</script>
+</html>
+
+

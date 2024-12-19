@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+
+    <h1 class="title" style="text-align: center; padding-top: 20px; color: red;">CORONA API</h1>
+    <h1 id="container">
+
+    </h1>
+
+    
+</body>
+<script>
+    function Fetchdata()
+    {
+        fetch("https://api.rootnet.in/covid19-in/stats/latest")
+        .then((res)=>res.json())
+        .then(data=>cardlist(data.data.regional))
+        .catch(err => console.log(err));
+    }
+    Fetchdata()
+
+
+    function cardlist(data)
+    {
+        let totalcardlist=data.map((el)=>card(el.loc,el.confirmedCasesIndian,el.confirmedCasesForeign,el.discharged,el.deaths,el.totalConfirmed))
+        // console.log(totalcardlist)
+
+        document.getElementById("container").innerHTML=totalcardlist.join("")
+    }
+
+
+
+    function card(loc,confirmedCasesIndian,confirmedCasesForeign,discharged,deaths,totalConfirmed)
+    {
+            let card=`
+            <div class="card" style="width:100%; height:100vh; border 
+            : 1px solid black; background-image: url('https://www.indialaw.in/wp-content/uploads/2021/06/covid-19-vaccine.jpg'); color:white; background-repeat: no-repeat; background-position: center; background-size: cover; margin-top:20px;">
+       
+
+
+            <p id="id"> loc : ${loc}</p>
+<p id="size">confirmedCasesIndian :   ${confirmedCasesIndian}</p>
+<p id="breed_group">confirmedCasesForeign :  ${confirmedCasesForeign}</p>
+<p id="name">discharged: <span style="color:black;"> ${discharged}</span></p>
+<p id="lifespan";">deaths:<span style="color:red;">  ${deaths}</span></p>
+<p id="origin">totalConfirmed:   <span style="color:green;"> ${totalConfirmed}</span></p>
+
+    </div>
+            
+            `
+            return card
+    }
+</script>
+</html>
+
+

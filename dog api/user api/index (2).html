@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+ <div id="container" ></div>
+</body>
+</html>
+<script>
+
+  function fetchdata(){
+    fetch("https://reqres.in/api/users?page=2")
+    .then((res)=>res.json())   
+    .then((data)=>{
+        carditem(data.data)
+        console.log(data.data)
+    })
+    .catch((err)=>{
+        console.log(err)
+    })  
+  }
+  fetchdata();
+
+
+  function carditem(data){
+    let totalcard=data.map((el)=>card(el.id,el.email,el.first_name,el.last_name,el.avatar));
+console.log(totalcard)
+    document.getElementById("container").innerHTML=totalcard.join("")
+}
+
+
+
+  function card(id,email,first_name,last_name,image){
+    let div=`
+    <div class="data" style="border:1px solid black; width:400px; margin:auto; padding:20px 20px; display:flex;" >  
+        <div>
+          <h1 id="id">id:${id}</h1>
+        <p id="email">email:${email}</p>
+        <h4 id="first">first_name:${first_name}</h4>
+        <h4 id="last_name">last_name:${last_name}</h4>
+          </div>
+        
+        <div style="padding-left:30px; padding-top:30px;">
+          <img src=${image} id="image" />
+        </div>
+    </div>
+    `
+    return div;
+  }
+</script>
